@@ -1,4 +1,4 @@
-//Function to generete chess board:
+//Function to generete chess board with queens on it:
 const generateBoard = function (whiteQueen, blackQueen) {
   let boardSize = 8;  
   let chessBoard = [];
@@ -19,23 +19,29 @@ const generateBoard = function (whiteQueen, blackQueen) {
   return chessBoard;
 }
 
-
-const queenThreat = function () {
-
-  //let's try to find our queens
-  for (let y = 0; y < chessBoard.length; y++) {
-    for (let x = 0; x < chessBoard.length; x++) {
-      if (chessBoard[y][x] === 1) {
-        return chessBoard[y][x];
-      }
-    }
+//Function to check if queens can capture each other;
+const queenThreat = function () {  
+  let result;
+ 
+  //check if two queens on the same row or column:
+  if(whiteQueen[0] === blackQueen[0] || whiteQueen[1] === blackQueen[1]) {
+    result = true;
+  //now check diagonals:
+  } else if (whiteQueen[0] === whiteQueen[1] && blackQueen[0] === blackQueen[1] ) {   
+    result = true;
+  } else if ( whiteQueen[0] + whiteQueen[1] === blackQueen[0] + blackQueen[1]) {
+    result = true;
+  } else {
+    result = false;
   }
+
+  return result;
 }
 
 
 
-let whiteQueen = [0, 5];
-let blackQueen = [5, 0];
+let whiteQueen = [1, 5];
+let blackQueen = [7, 3];
 let generatedBoard = generateBoard(whiteQueen, blackQueen);
 console.log(generatedBoard);
 console.log(queenThreat(generatedBoard));
