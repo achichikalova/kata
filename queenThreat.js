@@ -29,7 +29,9 @@ const queenThreat = function () {
   //now check diagonals:
   } else if (whiteQueen[0] === whiteQueen[1] && blackQueen[0] === blackQueen[1] ) {   
     result = true;
-  } else if ( whiteQueen[0] + whiteQueen[1] === blackQueen[0] + blackQueen[1]) {
+  //use linear equatations y = 1x + b and y = -1x + b:
+  } else if ( whiteQueen[0] + whiteQueen[1] === blackQueen[0] + blackQueen[1] 
+            || whiteQueen[1] - whiteQueen[0] === blackQueen[1] - blackQueen[0]) {
     result = true;
   } else {
     result = false;
@@ -40,8 +42,8 @@ const queenThreat = function () {
 
 
 
-let whiteQueen = [1, 5];
-let blackQueen = [7, 3];
+let whiteQueen = [3, 5];
+let blackQueen = [5, 7];
 let generatedBoard = generateBoard(whiteQueen, blackQueen);
 console.log(generatedBoard);
 console.log(queenThreat(generatedBoard));
